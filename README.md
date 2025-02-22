@@ -1,31 +1,31 @@
-# SalesWebMVC Project
+# StrAnalyticsOpen
 
 ## 📖 Sobre o Projeto
 
-O **SalesWebMVC** é um sistema de gestão de vendas desenvolvido em **C#** utilizando o framework **ASP.NET Core MVC**. Este projeto foi criado para fornecer uma plataforma onde empresas podem gerenciar departamentos, vendedores e registros de vendas de forma eficiente e organizada.
+O **StrAnalyticsOpen** é um sistema de controle de vendas e serviços para a loja STR Ar Condicionados. Este projeto foi desenvolvido para fornecer uma plataforma onde a loja pode gerenciar suas vendas e serviços de maneira eficiente.
 
 ## 🌟 Funcionalidades Principais
 
-- **Gestão de Departamentos:**
-  - Listagem, criação, edição e exclusão de departamentos.
+- **Gestão de Produtos:**
+  - Listagem, criação, edição e exclusão de produtos.
+  
+- **Gestão de Vendas:**
+  - Registro de vendas com detalhes dos produtos vendidos.
+  - Consulta de vendas com filtros de data e valores.
+  
+- **Gestão de Serviços:**
+  - Registro de serviços prestados com detalhes dos clientes e serviços realizados.
+  - Consulta de serviços com filtros de data e categorias.
 
-- **Gestão de Vendedores:**
-  - Listagem de vendedores por departamento.
-  - Registro, edição e exclusão de vendedores.
-
-- **Gestão de Registros de Vendas:**
-  - Consulta de vendas com filtros de data.
-  - Integração para visualizar e organizar dados de vendas.
-
-## 🛠️ Tecnologias Utilizadas
+## 🔧 Tecnologias Utilizadas
 
 - **Backend:**
   - C#
   - ASP.NET Core MVC
-
+  
 - **Banco de Dados:**
   - SQL Server (Entity Framework Core como ORM)
-
+  
 - **Frontend:**
   - Razor Pages
   - HTML/CSS/Bootstrap
@@ -33,22 +33,22 @@ O **SalesWebMVC** é um sistema de gestão de vendas desenvolvido em **C#** util
 ## 📂 Estrutura do Projeto
 
 ```plaintext
-SalesWebMvc/
+StrAnalyticsOpen/
 ├── Controllers/
-│   ├── DepartmentsController.cs
-│   ├── SellersController.cs
-│   └── SalesRecordsController.cs
+│   ├── ProductsController.cs
+│   ├── SalesController.cs
+│   └── ServicesController.cs
 ├── Models/
-│   ├── Department.cs
-│   ├── Seller.cs
-│   └── SalesRecord.cs
+│   ├── Product.cs
+│   ├── Sale.cs
+│   └── Service.cs
 ├── Data/
 │   ├── SeedingService.cs
-│   └── SalesWebMvcContext.cs
+│   └── StrAnalyticsOpenContext.cs
 ├── Views/
-│   ├── Departments/
-│   ├── Sellers/
-│   └── SalesRecords/
+│   ├── Products/
+│   ├── Sales/
+│   └── Services/
 └── wwwroot/
 ```
 
@@ -69,59 +69,50 @@ SalesWebMvc/
 ### Passo a Passo
 
 1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/SalesWebMVC.git
-   ```
+    ```bash
+    git clone https://github.com/GuilhermeBomfimDev/StrAnalyticsOpen.git
+    ```
 
 2. Navegue até a pasta do projeto:
-   ```bash
-   cd SalesWebMVC
-   ```
+    ```bash
+    cd StrAnalyticsOpen
+    ```
 
-3. Configure a conexão com o banco de dados no arquivo `appsettings.json`:
-   ```json
-   "ConnectionStrings": {
-     "DefaultConnection": "Server=SEU_SERVIDOR;Database=SalesWebMVC;User Id=SEU_USUARIO;Password=SUA_SENHA;"
-   }
-   ```
+3. Configure a conexão com o banco de dados no arquivo `appsettings.json`. OBS: Utilize apenas uma String por vez (Local ou Hospedada):
+    ```json
+    "ConnectionStrings": {
+      "StrAnalyticsContext":
+      /*String de conexão com o banco de dados hospedado no Azure*/
+      "Server=tcp:{Nome-do-seu-server}.database.windows.net,1433;Initial Catalog=stranalytics;Persist Security Info=False;User ID={Seu-IdName};Password={Sua-  Senha};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+      
+      /*String de conexão com o banco de dados local*/
+      "Server=localhost\\SQLEXPRESS;Database=stranalytics;User Id=sa;Password={Sua-Senha};TrustServerCertificate=True;"
+    }
+    ```
+  
+4. Crie uma migration se necessárioo:
+    ```Nugget Package Console
+    Add-Migration {Nome-da-Migration}
+    ```
+    
+5. Execute as migrações para criar o banco de dados:
+    ```Nugget Package Console
+    Update-Database
+    ```
+    OU
+    ```bash
+    dotnet ef database update
+    ```
 
-4. Execute as migrações para criar o banco de dados:
-   ```bash
-   dotnet ef database update
-   ```
+7. Execute o projeto:
+    ```bash
+    dotnet run
+    ```
 
-5. Execute o projeto:
-   ```bash
-   dotnet run
-   ```
-
-6. Acesse o sistema no navegador em:
-   ```plaintext
-   https://localhost:5001
-   ```
-
-## 📊 Estrutura do Banco de Dados
-
-O projeto utiliza as seguintes tabelas:
-
-- **Departments:**
-  - `Id`: Identificador do departamento (auto incremento).
-  - `Name`: Nome do departamento.
-
-- **Sellers:**
-  - `Id`: Identificador do vendedor (auto incremento).
-  - `Name`: Nome do vendedor.
-  - `Email`: E-mail do vendedor.
-  - `BirthDate`: Data de nascimento.
-  - `BaseSalary`: Salário base.
-  - `DepartmentId`: Chave estrangeira para o departamento.
-
-- **SalesRecords:**
-  - `Id`: Identificador do registro de venda (auto incremento).
-  - `Date`: Data da venda.
-  - `Amount`: Quantia da venda.
-  - `Status`: Status da venda.
-  - `SellerId`: Chave estrangeira para o vendedor.
+8. Acesse o sistema no navegador em:
+    ```plaintext
+    https://localhost:5001
+    ```
 
 ## 🤝 Contribuições
 
